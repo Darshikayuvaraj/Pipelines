@@ -1,0 +1,26 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "taskId" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionOutputTaskIdLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionOutputTaskIdDesc}",
+      "lightning:type" : "lightning__recordIdType",
+      "einstein:description" : "Corresponding generated record id.",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "resultMessage" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionOutputMessageLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionOutputMessageDesc}",
+      "maxLength" : 100000,
+      "lightning:type" : "lightning__richTextType",
+      "einstein:description" : "Success or Error Message",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

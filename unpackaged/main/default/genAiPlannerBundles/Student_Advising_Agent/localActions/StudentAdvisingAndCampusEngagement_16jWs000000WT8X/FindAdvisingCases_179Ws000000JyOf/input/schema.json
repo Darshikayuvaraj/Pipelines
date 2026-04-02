@@ -1,0 +1,15 @@
+{
+  "required" : [ "ContactId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "ContactId" : {
+      "title" : "Contact",
+      "description" : "This is an 18-digit record ID for Contact. Get the student’s name from the user conversation and run the IdentifyRecordByName action to retrieve the student’s Contact record. If a name isn’t provided then ask the user for the student’s name.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

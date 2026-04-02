@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Adds the ID of the course offering participant passed into the flow to the CourseOfferingParticipantIds variable.</description>
+        <name>AddParticipantIdToCollection</name>
+        <label>Add Participant ID to Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CourseOfferingParticipantIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>GetCourseOffering</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets errorOrSuccessMessage to the value of the errorOrSuccessMessage output from the Add Course Offering Participant to Channel subflow.</description>
+        <name>SetErrorOrSuccessMessage</name>
+        <label>Set Error or Success Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>errorOrSuccessMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>AddCourseOfferingParticipantToChannel.errorOrSuccessMessage</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Determines whether a Slack Channel Related Record was found by checking if the ID field of the Slack channel related record from GetSlackChannelRelatedRecord is empty.</description>
+        <name>HaveSlackChannelRelatedRecord</name>
+        <label>Have Slack Channel Related Record?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No (Default)</defaultConnectorLabel>
+        <rules>
+            <name>HasSlackChannelRelatedRecord</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetSlackChannelRelatedRecord.SlackChannel</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AddCourseOfferingParticipantToChannel</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>[Test] EDU Course Operations: Add Enrolled Participant to Slack Channel {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>[Clone] EDU Course Operations: Add Enrolled Participant to Slack Channel</label>
+    <overriddenFlow>educrseoper__AddEnrlPtcpSlackChnl</overriddenFlow>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Gets the course offering record with an ID that matches the courseOfferingId passed into the flow. Stores the result in the Course Offering from GetCourseOffering record variable.</description>
+        <name>GetCourseOffering</name>
+        <label>Get Course Offering</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GetSlackChannelRelatedRecord</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>SetErrorOrSuccessMessage</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.CourseOfferingId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CourseOffering</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Gets the Slack channel related record with a Related Record ID that matches the courseOfferingId from GetCourseOffering. Stores the result in the Slack Channel Related Record from GetSlackChannelRelatedRecords record variable.</description>
+        <name>GetSlackChannelRelatedRecord</name>
+        <label>Get Slack Channel Related Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>HaveSlackChannelRelatedRecord</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>SetErrorOrSuccessMessage</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RelatedRecord</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetCourseOffering.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SlackChannelRelatedRecord</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <runInMode>DefaultMode</runInMode>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>AddParticipantIdToCollection</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterFormula>false</filterFormula>
+        <object>CourseOfferingParticipant</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Calls a flow that adds the course offering participant in the CourseOfferingParticipantIds collection to the Slack channel. Stores the outputs in Outputs from Add Course Offering Participant to Channel.</description>
+        <name>AddCourseOfferingParticipantToChannel</name>
+        <label>Add Course Offering Participant to Channel</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>SetErrorOrSuccessMessage</targetReference>
+        </connector>
+        <flowName>educrseoper__AddPtcpSlackChnl</flowName>
+        <inputAssignments>
+            <name>channelId</name>
+            <value>
+                <elementReference>GetSlackChannelRelatedRecord.SlackChannel</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>courseOfferingParticipantIds</name>
+            <value>
+                <elementReference>CourseOfferingParticipantIds</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <description>Stores the ID of the course offering participant to add to the Slack channel.</description>
+        <name>CourseOfferingParticipantIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores a message that indicates whether the flow succeeded. This value is available as output from the flow.</description>
+        <name>errorOrSuccessMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

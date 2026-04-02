@@ -1,0 +1,36 @@
+{
+  "required" : [ "Input:GoalTimeline", "Input:GoalCategory" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:GoalTimeline" : {
+      "title" : "Goal Timeline",
+      "description" : "The timeline for the goals (e.g. Short-Term (1-2 years), Mid-Term (2-3 years), Long-Term (3-4 years)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "Input:GoalCategory" : {
+      "title" : "Goal Category",
+      "description" : "The category of goals to suggest (e.g., Career Exploration, Academic Achievement, Leadership Development, Skill Building)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "Input:AdditionalContext" : {
+      "title" : "Additional Context",
+      "description" : "Any additional context, preferences, or specific areas of focus for goal suggestions",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "Input:ContactId" : {
+      "title" : "Contact Id",
+      "description" : "This is an 18-digit record ID for Student’s Contact.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

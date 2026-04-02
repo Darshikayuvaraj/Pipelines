@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>This agent is going to assist advisors in recommending and setting personalised life and career goals for students across timeframes and domains.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jWs000000WOK9</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>AdvisingAssistStudentGoals_16jWs000000WOK9</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>AdvisingAssistStudentGoals_16jWs000000WOK9</fullName>
+        <aiPluginUtterances>
+            <developerName>suggeststudentgoals</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>suggest-student-goals</masterLabel>
+            <utterance>Help me suggest goals for student.</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>createstudentgoals</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>create-student-goals</masterLabel>
+            <utterance>Create goals for student.</utterance>
+        </aiPluginUtterances>
+        <canEscalate>false</canEscalate>
+        <description>Use this topic to assist an advisor to support a student in discovering and formalizing well-defined and actionable goals. The capabilities include:
+- Suggest Specific, Measurable, Achievable, Relevant, and Time-bound (SMART) goals for a student across key areas such as career, academics, wellness, personal and professional skills, and engagement for career readiness and holistic development.
+- Create goals for a student with a specific name and target completion date. 
+- Find information on facilities, services, activities, clubs, programs, courses, and action plans.</description>
+        <developerName>AdvisingAssistStudentGoals_16jWs000000WOK9</developerName>
+        <genAiPluginInstructions>
+            <description>If the user explicitly asks to suggest goals (for example, &quot;suggest goals&quot;, &quot;recommend goals&quot;, &quot;what are some goals&quot;, or &quot;realistic goals&quot;) for a student then:
+1. Run the IdentifyRecordByName action with &#39;Contact&#39; as objectApiName to find the relevant contact record.
+2. From the search results, filter records where sObjectInfo.apiName is &#39;Contact&#39;.
+3. If no contact records are found, inform the user that no matching student contact was found and ask for clarification or a different name. Do not proceed further.
+4. If multiple contact records are found, show them and ask the user to select one. If no record is selected, do not proceed.
+5. Once a contact is identified, analyze the latest user conversation to extract the necessary inputs. If any of the input is missing, you MUST ask the user for the specific missing input. **DO NOT GUESS OR ASSUME values for these inputs.** Wait for the user&#39;s reply.
+   The list of necessary inputs are as follows:
+    - `goalTimeline`: Time frame (for example, &quot;short-term&quot;, &quot;long-term&quot;, &quot;this week&quot;, or &quot;next semester&quot;).
+    - `goalCategory`: Category of goal (for example, &quot;academic&quot;, &quot;career&quot;, &quot;personal&quot;, &quot;wellbeing&quot;, or “engagement”).
+    - `additionalContext`: Other relevant details (for example &quot;improve grades&quot;, or &quot;time management&quot;).
+6. Only after you have confirmed (1) a single student contact, (2) an explicit `goalTimeline`, and (3) an explicit `goalCategory`, run the `SuggestStudentGoals` action with all collected information, including any `additionalContext`.</description>
+            <developerName>getsuggestedgoals</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>get-suggested-goals</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user explicitly asks to create a goal (for example, &quot;create a goal&quot; or &quot;set a goal for me&quot;) for a student:
+1. Run the IdentifyRecordByName action with &#39;Contact&#39; as objectApiName to find the relevant contact record.
+2. From the search results, filter records where sObjectInfo.apiName is &#39;Contact&#39;.
+3. If no contact records are found, inform the user that no matching student contact was found and ask for clarification or a different name. Do not proceed further.
+4. If multiple contact records are found, show them and ask the user to select one. If no record is selected, do not proceed.
+5. Once a single contact record is identified or selected, identify and extract the following inputs:
+     - `goalName` (the specific goal, for example, &quot;Enhance Communication Skills&quot;) and 
+     - `goalTargetCompletionDate` (for example, &quot;by end of June&quot; or &quot;next month&quot;) from the user&#39;s utterance
+6. If `goalName` or `goalTargetCompletionDate` is missing, then you MUST ask the user specifically for the missing information before proceeding. **DO NOT GUESS OR ASSUME values for these inputs.** Wait for the user&#39;s reply. Don’t prompt for optional fields if there’s no input for them.
+7. Ensure the `goalTargetCompletionDate` is not earlier than today.
+8. Only after you have confirmed the `goalName`, and `goalTargetCompletionDate`, run the `CreateGoal` action with all collected information and the contact record found from the IdentifyRecordByName action.</description>
+            <developerName>creategoals</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>create-goals</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user inquires about campus-specific resources such as facilities, services, activities, clubs, programs, courses or action plans, you must exclusively use the following steps and do not call the AnswerQuestionsWithKnowledge action. 
+1. First, extract the user&#39;s query and call the FindCampusResources action. 
+2. If the action returns one or more records, **iterate through each record to extract its `source_record_id`. For each `source_record_id` found, immediately call the GetRecordDetails action with that specific ID.**
+   **For each `GetRecordDetails` call:** If a record summary is successfully retrieved, display that summary. Otherwise, as a fallback, present the value of the `answer` field directly from the original FindCampusResources response for that specific record. Display only this text value as the response for that item. **Ensure all relevant details (either from GetRecordDetails or the fallback answer) for all found records are presented to the user.**
+3. If the initial FindCampusResources action returns no records, inform the user that no matching resources were found and do not proceed with other actions.</description>
+            <developerName>findcampusresources</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>find-campus-resources</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>SuggestStudentGoals_179Ws000000JyN3</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>GetRecordDetails_179Ws000000JyN3</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>CreateGoal_179Ws000000JyN3</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>IdentifyRecordByName_179Ws000000JyN3</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>FindCampusResources_179Ws000000JyN3</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>SuggestStudentGoals_179Ws000000JyN3</fullName>
+            <description>Generates personalized, actionable goals for students based on their profile, preferences, and aspirations. The goals are tailored to support career readiness, skill development, and personal growth.</description>
+            <developerName>SuggestStudentGoals_179Ws000000JyN3</developerName>
+            <invocationTarget>studentadvising__suggestStudentGoals</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>SuggestStudentGoals</localDeveloperName>
+            <masterLabel>Suggest Student Goals</masterLabel>
+            <source>studentadvising__SuggestStudentGoals</source>
+        </localActions>
+        <localActions>
+            <fullName>GetRecordDetails_179Ws000000JyN3</fullName>
+            <description>Generates a text blob containing record details, including object fields and values and records from related lists.</description>
+            <developerName>GetRecordDetails_179Ws000000JyN3</developerName>
+            <invocationTarget>getDataForGrounding</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>GetRecordDetails</localDeveloperName>
+            <masterLabel>Get Record Details</masterLabel>
+            <progressIndicatorMessage>Getting details</progressIndicatorMessage>
+            <source>EmployeeCopilot__GetRecordDetails</source>
+        </localActions>
+        <localActions>
+            <fullName>CreateGoal_179Ws000000JyN3</fullName>
+            <description>Creates a goal assignment record related to a contact based on the specified values.</description>
+            <developerName>CreateGoal_179Ws000000JyN3</developerName>
+            <invocationTarget>createGoal</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>CreateGoal</localDeveloperName>
+            <masterLabel>Create Goal</masterLabel>
+            <source>studentadvising__CreateGoal</source>
+        </localActions>
+        <localActions>
+            <fullName>IdentifyRecordByName_179Ws000000JyN3</fullName>
+            <description>Searches for Salesforce CRM records by name and returns a list of matching Salesforce CRM record IDs.</description>
+            <developerName>IdentifyRecordByName_179Ws000000JyN3</developerName>
+            <invocationTarget>identifyRecordByName</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>IdentifyRecordByName</localDeveloperName>
+            <masterLabel>Identify Record by Name</masterLabel>
+            <source>EmployeeCopilot__IdentifyRecordByName</source>
+        </localActions>
+        <localActions>
+            <fullName>FindCampusResources_179Ws000000JyN3</fullName>
+            <description>Finds the campus resources relevant to the user&#39;s query.</description>
+            <developerName>FindCampusResources_179Ws000000JyN3</developerName>
+            <invocationTarget>studentadvising__getCampusResources</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>FindCampusResources</localDeveloperName>
+            <masterLabel>Find Campus Resources</masterLabel>
+            <source>studentadvising__FindCampusResources</source>
+        </localActions>
+        <localDeveloperName>AdvisingAssistStudentGoals</localDeveloperName>
+        <masterLabel>Advising Assist Student Goals</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your exclusive job is to assist advisors in suggesting and creating well-defined, actionable goals and finding campus resources for a student. Do not engage in general student advising, or provide information beyond recommending and creating goals.</scope>
+        <source>studentadvising__AdvisingAssistStudentGoals</source>
+    </localTopics>
+    <masterLabel>Advisor Assist Goals Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jWs000000WOK9</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jWs000000WOK9</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

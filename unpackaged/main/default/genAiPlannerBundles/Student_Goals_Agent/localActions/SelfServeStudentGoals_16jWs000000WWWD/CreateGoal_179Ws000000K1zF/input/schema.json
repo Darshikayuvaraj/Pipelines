@@ -1,0 +1,71 @@
+{
+  "required" : [ "goalName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "goalName" : {
+      "title" : "Goal Name",
+      "description" : "The name of the goal.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "goalDescription" : {
+      "title" : "Goal Description",
+      "description" : "The description of the goal.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "parentRecordId" : {
+      "title" : "Parent Record Id",
+      "description" : "The Salesforce ID of the assignee’s account.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "goalAssignee" : {
+      "title" : "Goal Assignee",
+      "description" : "The contact to which the goal is to be assigned",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "goalDefinition" : {
+      "title" : "Goal Definition",
+      "description" : "The Salesforce record ID of the goal definition.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "goalStartDate" : {
+      "title" : "Goal Start Date",
+      "description" : "The date from which the goal starts.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "goalTargetCompletionDate" : {
+      "title" : "Goal Target Completion Date",
+      "description" : "The date by which the goal is expected to be completed or achieved.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "goalStatus" : {
+      "title" : "Goal Status",
+      "description" : "Specifies the status of the assigned goal.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "goalPriority" : {
+      "title" : "Goal Priority",
+      "description" : "Specifies the priority of the assigned goal.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

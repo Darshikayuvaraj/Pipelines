@@ -1,0 +1,15 @@
+{
+  "required" : [ "Input:Query" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:Query" : {
+      "title" : "User Query",
+      "description" : "The query text from the user. Get this from end-user conversation.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

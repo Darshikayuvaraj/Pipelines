@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveXmd xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dataset xsi:nil="true"/>
+    <dimensions>
+        <defaultAction>openActionsMenu</defaultAction>
+        <field>Students_Without_Suc_1.Account.Name</field>
+        <isDerived>false</isDerived>
+        <linkTemplateEnabled>true</linkTemplateEnabled>
+        <linkTooltip>PersonAccount</linkTooltip>
+        <recordDisplayFields>
+            <recordDisplayField>Account.Name</recordDisplayField>
+            <sortIndex>0</sortIndex>
+        </recordDisplayFields>
+        <recordIdField>LearnerAccountId</recordIdField>
+        <salesforceActions>
+            <enabled>true</enabled>
+            <salesforceActionName>Account.runtime_appointmentbooking__Flow</salesforceActionName>
+            <sortIndex>0</sortIndex>
+        </salesforceActions>
+        <salesforceActionsEnabled>true</salesforceActionsEnabled>
+        <sortIndex>0</sortIndex>
+    </dimensions>
+    <type>Asset</type>
+    <waveVisualization>Education_Students_Without_Success_Team</waveVisualization>
+</WaveXmd>

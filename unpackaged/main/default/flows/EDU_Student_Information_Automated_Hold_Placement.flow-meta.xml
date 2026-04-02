@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Calls an action that assigns a hold on the student related to the regulatory code and the applicable regulation clauses. Stores the context IDs to indicate whether a hold applies to a student.</description>
+        <name>AssignHold</name>
+        <label>Assign Hold</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>assignHoldOnStudent</actionName>
+        <actionType>assignHoldOnStudent</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>contactId</name>
+            <value>
+                <elementReference>ContactId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>regulatoryCodeId</name>
+            <value>
+                <elementReference>RegulatoryCodeId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>regulationClauseIds</name>
+            <value>
+                <elementReference>RegClausVersionIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>expressionSetIds</name>
+            <value>
+                <elementReference>GetRegulationClauseExpressionSet.expressionSetIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>contextIds</name>
+            <value>
+                <elementReference>ContextIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>caseOrigin</name>
+            <value>
+                <stringValue>Hold Automation</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>assignHoldOnStudent</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Calls an action to get the expression set related to the regulation clause version IDs passed into the flow.</description>
+        <name>GetRegulationClauseExpressionSet</name>
+        <label>Get Regulation Clause Expression Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>getRelatedPolicyRules</actionName>
+        <actionType>getRelatedPolicyRules</actionType>
+        <connector>
+            <targetReference>IterateOverExpressionSet</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>RegClausVersionIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectName</name>
+            <value>
+                <stringValue>RegulationClauseVersion</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>getRelatedPolicyRules</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Calls an action to run the expression set related to the regulation clause.</description>
+        <name>RunExpressionSet</name>
+        <label>Run Expression Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>executeExprSetWithContext</actionName>
+        <actionType>executeExprSetWithContext</actionType>
+        <connector>
+            <targetReference>SetContextId</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>RecordId</name>
+            <value>
+                <elementReference>ContactId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ExpressionSetApiName</name>
+            <value>
+                <elementReference>GetExpressionSetApiName.ApiName</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>executeExprSetWithContext</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Sets the context ID for the expression set that was run in a loop to the contextIds collection.</description>
+        <name>SetContextId</name>
+        <label>Set Context ID</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>ContextIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>RunExpressionSet.ContextId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>IterateOverExpressionSet</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the version IDs for regulation clauses.</description>
+        <name>SetRegulationClauses</name>
+        <label>Set Regulation Clauses</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>RegClausVersionIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>IterateOverRegulationClauses.RegulationClauseVersionId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>IterateOverRegulationClauses</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>EDU Student Information: Automated Hold Placement {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>EDU Student Information: Automated Hold Placement</label>
+    <loops>
+        <description>Repeats an action to evaluate the expression set related to each regulation clause and prepares to run it.</description>
+        <name>IterateOverExpressionSet</name>
+        <label>Iterate Over Expression Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GetRegulationClauseExpressionSet.expressionSetIds</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>GetExpressionSetApiName</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>AssignHold</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Repeats an action for each regulation code regulation clause junction record to get the regulation clause version IDs.</description>
+        <name>IterateOverRegulationClauses</name>
+        <label>Iterate Over Regulation Clauses</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GetRegulationClauses</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>SetRegulationClauses</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>GetRegulationClauseExpressionSet</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <overriddenFlow>eduadvncdacad__AssignHoldOnStu</overriddenFlow>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Gets Expression Set API Name associated with the Expression Set.</description>
+        <name>GetExpressionSetApiName</name>
+        <label>Get Expression Set API Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>RunExpressionSet</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>IterateOverExpressionSet</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ExpressionSet</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>ApiName</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Gets the Regulation Clauses associated with the Regulatory Code</description>
+        <name>GetRegulationClauses</name>
+        <label>Get Regulation Clauses</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>IterateOverRegulationClauses</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RegulatoryCodeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RegulatoryCodeId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>RgltyCodeRegClauseVer</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <runInMode>DefaultMode</runInMode>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GetRegulationClauses</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <description>Stores the ID of the contact that was passed into the flow.</description>
+        <name>ContactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores a collection of context IDs for the expression sets that were run.</description>
+        <name>ContextIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores a collection of version IDs for the regulation clauses.</description>
+        <name>RegClausVersionIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the ID of the regulatory code for the hold to be assigned to the student.</description>
+        <name>RegulatoryCodeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,88 @@
+{
+  "required" : [ "subject" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "ownerId" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputOwnerIdLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputOwnerIdDesc}",
+      "lightning:type" : "lightning__recordIdType",
+      "einstein:description" : "Query the User 18-digit Id using the IdentifyRecordByName. If no specific person is assigned, use the current user context to get the user Id.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "subject" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputSubjectLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputSubjectDesc}",
+      "lightning:type" : "lightning__textType",
+      "einstein:description" : "The subject line of the to-do or task, such as “Call”, “Send Quote”, “Email”, “To do”. Subject should be a short description and extracted from the utterance. Limit to 255 characters.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "description" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputDescriptionLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputDescriptionDesc}",
+      "lightning:type" : "lightning__textType",
+      "einstein:description" : "Contains a long text description of the task.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "activityDate" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputActivityDateLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputActivityDateDesc}",
+      "lightning:type" : "lightning__dateType",
+      "einstein:description" : "Represents the due date of the task. This field has a timestamp that is always set to midnight in the Coordinated Universal Time (UTC) time zone. The timestamp is not relevant; do not attempt to alter it to accommodate time zone differences.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "nameId" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputWhoIdLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputWhoIdDesc}",
+      "lightning:type" : "lightning__recordIdType",
+      "einstein:description" : "Query the Contact or Lead 18-digit Id using the IdentifyRecordByName. It should be implied from the user input that the name of the record. The record name must not include any information that is not from the user input. Only use the nameId field if a particular nameId has been identified in an earlier step, otherwise leave empty.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "priority" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputPriorityLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputPriorityDesc}",
+      "lightning:type" : "lightning__textType",
+      "einstein:description" : "Indicates the importance or urgency of a task, such as high or low. The default value of this field is Normal.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "relatedToId" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputWhatIdLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputWhatIdDesc}",
+      "lightning:type" : "lightning__recordIdType",
+      "einstein:description" : "Query the 18-digit Id using the IdentifyRecordByName. It should be implied from the user input that the name of the record is related to the subject of the call that is being saved. The record name must not include any information that is not from the user input. Only use the relatedToId field if a particular relatedToId has been identified in an earlier step, otherwise, leave it empty.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "status" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputStatusLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputStatusDesc}",
+      "lightning:type" : "lightning__textType",
+      "einstein:description" : "Indicates the status of the task. The default value of this field is Not Started. Each predefined status field implies a value for the IsClosed flag. To obtain picklist values, query the TaskStatus object.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "taskSubtype" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputTaskSubtypeLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputTaskSubtypeDesc}",
+      "lightning:type" : "lightning__textType",
+      "einstein:description" : "Indicates the task subtypes and the available options is Task, Call or Email.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "reminderDateTime" : {
+      "title" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputReminderDateTimeLabel}",
+      "description" : "{!$Label.InvocableActionCreateTodoRecord.InvocableActionInputReminderDateTimeDesc}",
+      "lightning:type" : "lightning__dateTimeStringType",
+      "einstein:description" : "Represents the time when the reminder is scheduled to fire.",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

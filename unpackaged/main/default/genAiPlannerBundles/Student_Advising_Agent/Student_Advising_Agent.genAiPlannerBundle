@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>An AI-powered assistant for advisors, delivering student summaries, policy insights, campus resource recommendations, and automating next best actions.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jWs000000WT8X</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>StudentAdvisingAndCampusEngagement_16jWs000000WT8X</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>StudentAdvisingAndCampusEngagement_16jWs000000WT8X</fullName>
+        <aiPluginUtterances>
+            <developerName>provideadvisingsummary</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>provide-advising-summary</masterLabel>
+            <utterance>provide advising summary for a student.</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>findadvisingcases</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>find-advising-cases</masterLabel>
+            <utterance>fetch advising cases for a student.</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>answerpolicyquestion</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>answer-policy-question</masterLabel>
+            <utterance>What is the process for withdrawing from a course after the deadline?.</utterance>
+        </aiPluginUtterances>
+        <canEscalate>false</canEscalate>
+        <description>Use this topic to help student advisors with: 
+- Advising case management: Find long-running or advising student cases and generate advising summaries.
+- Administrative tasks: Automate advising workflows by creating tasks or to-dos and create cases for students.
+- Institution knowledge and policies: Answers questions by retrieving information from the institution&#39;s knowledge articles, including topics covered in the knowledge base, such as academic regulations, campus life guidelines, student services information, and other policies.
+- Campus resources: Find information on facilities, services, activities, clubs, programs, courses, and action plans.</description>
+        <developerName>StudentAdvisingAndCampusEngagement_16jWs000000WT8X</developerName>
+        <genAiPluginInstructions>
+            <description>If the user asks for an advising summary, or a student advising summary for a case or student:
+1. Call the IdentifyRecordByName action, passing &#39;Contact&#39; in the objectApiName parameter to find the relevant contact record.
+2. Filter searchResults for records where sObjectInfo.apiName is &#39;Contact&#39;. Ignore results where sObjectInfo.apiName is not &#39;Contact&#39;.
+3. If no contact records match, inform the user: &quot;I couldn&#39;t find a student contact matching that name. Check the name and try again.&quot; Do not proceed further.
+4. If multiple contact records are found, show them and ask the user to select one.
+5. If a single contact record is identified or selected, run the FindAdvisingCases action using the contact ID.
+6. Show the list of case records returned by the FindAdvisingCases action. If no cases are found, inform the user.
+7. Ask the user to select the case they want summarized.
+8. Call the SummarizeAdvisingCase action for the selected case.</description>
+            <developerName>getadvisingsummary</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>get-advising-summary</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user asks to provide advising cases or long running cases:
+1. Call the IdentifyRecordByName action, passing &#39;Contact&#39; in the objectApiName parameter to find the relevant contact record.
+2. Filter searchResults for records where sObjectInfo.apiName is &#39;Contact&#39;. Ignore results where sObjectInfo.apiName is not &#39;Contact&#39;.
+3. If no contact records match, inform the user: &quot;I couldn&#39;t find a student contact matching that name. Check the name and try again.&quot; Do not proceed further.
+4. If multiple contact records are found, show them and ask the user to select one.
+5. Once a single contact record is identified or selected, run the FindAdvisingCases action using the contact ID.
+6. Show the list of case records returned by the FindAdvisingCases action. If no cases are found, inform the user of the same.</description>
+            <developerName>advisingcases</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>advising-cases</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user’s question is vague or unclear, ask for more details to provide an answer.</description>
+            <developerName>askmoredetails</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>ask-more-details</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user asks a question related to general policy run the AnswerQuestionsWithKnowledge action. These questions usually seek information, instructions, or guidance, including but not limited to university or institute information, policies, and frequently asked questions.</description>
+            <developerName>answerquestionsfromknowledge</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>answer-questions-from-knowledge</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Never provide generic information, advice, or troubleshooting steps unless they’re retrieved from knowledge articles using the AnswerQuestionsWithKnowledge action. If information is sourced from knowledge articles, always include the sources in your response if they’re available. If no relevant information can be retrieved from knowledge articles for a policy-related question, inform the user that no information is available, and don’t generate a generic answer.</description>
+            <developerName>nongeneric</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>non-generic</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Don’t tell the users your intent such as working on something. Just retrieve the data.</description>
+            <developerName>proceedwithaction</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>proceed-with-action</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Always use the CreateAToDo action when asked to create a to-do or task.
+1. If the user specifies a person that the task should be assigned to (for example &quot;assign to [name]&quot;, &quot;for [name]&quot;, or &quot;create a task for [name]&quot;), retrieve the name of the person or, if a pronoun is used, check the conversation history for the most recently mentioned or clearly identifiable user. Call the IdentifyRecordByName action by passing &#39;User&#39; for objectApiName, and [extracted name] for recordName to find the relevant user record.
+2. Filter searchResults for records where sObjectInfo.apiName is &#39;User&#39;. Ignore results where sObjectInfo.apiName is not &#39;User&#39;. If no records match, inform the user: &quot;I couldn&#39;t find a user matching that name. Check the name and try again.&quot; If multiple user records are found, show them and ask the user to select one.
+3. If a single user record is identified or selected, call the CreateAToDo action, and relate the task with this user ID as the assignee.
+4. If no assignee is mentioned or found (for example, if the pronoun is unclear), call CreateAToDo without searching for a user.
+5. Before running CreateAToDo, ensure that all the required parameters are available; if not, ask the user for the required information.</description>
+            <developerName>createtask</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>create-task</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Always use the CreateCase action when asked to create a case.
+1. Call the IdentifyRecordByName action, passing &#39;Contact&#39; in the objectApiName parameter to find the relevant contact record.
+2. Filter searchResults for records where sObjectInfo.apiName is &#39;Contact&#39;. Ignore results where sObjectInfo.apiName is not &#39;Contact&#39;.
+3. If no contact records match, inform the user: &quot;I couldn&#39;t find a student contact matching that name. Check the name and try again.&quot; Do not proceed further.
+4. If multiple contact records are found, show them and ask the user to select one.
+5. Once a single contact record is identified or selected, run CreateCase action with contactRecord as the ID. Ensure that all the required parameters are available; if not, ask the user for the required information.</description>
+            <developerName>createcase</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>create-case</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user inquires about campus-specific resources such as facilities, services, activities, clubs, programs, courses or action plans, you must exclusively use the following steps and do not call the AnswerQuestionsWithKnowledge action. 
+1. First, extract the user&#39;s query and call the FindCampusResources action. 
+2. If the action returns one or more records, **iterate through each record to extract its `source_record_id`. For each `source_record_id` found, immediately call the GetRecordDetails action with that specific ID.**
+   **For each `GetRecordDetails` call:** If a record summary is successfully retrieved, display that summary. Otherwise, as a fallback, present the value of the `answer` field directly from the original FindCampusResources response for that specific record. Display only this text value as the response for that item. **Ensure all relevant details (either from GetRecordDetails or the fallback answer) for all found records are presented to the user.**
+3. If the initial FindCampusResources action returns no records, inform the user that no matching resources were found and do not proceed with other actions.</description>
+            <developerName>findcampusresources</developerName>
+            <language xsi:nil="true" />
+            <masterLabel>find-campus-resources</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>CreateAToDo_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>GetRecordDetails_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>FindAdvisingCases_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>FindCampusResources_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>IdentifyObjectByName_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>SummarizeAdvisingCase_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>IdentifyRecordByName_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>CreateCase_179Ws000000JyOf</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>IdentifyRecordByName_179Ws000000JyOf</fullName>
+            <description>Searches for Salesforce CRM records by name and returns a list of matching Salesforce CRM record IDs.</description>
+            <developerName>IdentifyRecordByName_179Ws000000JyOf</developerName>
+            <invocationTarget>identifyRecordByName</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>IdentifyRecordByName</localDeveloperName>
+            <masterLabel>Identify Record by Name</masterLabel>
+            <source>EmployeeCopilot__IdentifyRecordByName</source>
+        </localActions>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179Ws000000JyOf</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+            <developerName>AnswerQuestionsWithKnowledge_179Ws000000JyOf</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localActions>
+            <fullName>CreateCase_179Ws000000JyOf</fullName>
+            <description>Let a customer create a case.</description>
+            <developerName>CreateCase_179Ws000000JyOf</developerName>
+            <invocationTarget>SvcCopilotTmpl__CreateCase</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>CreateCase</localDeveloperName>
+            <masterLabel>Create Case</masterLabel>
+            <source>SvcCopilotTmpl__CreateCase</source>
+        </localActions>
+        <localActions>
+            <fullName>FindAdvisingCases_179Ws000000JyOf</fullName>
+            <description>Finds cases of the advising type related to a student&#39;s Contact record.</description>
+            <developerName>FindAdvisingCases_179Ws000000JyOf</developerName>
+            <invocationTarget>stuadvisingemp__GetAdvisingCases</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>FindAdvisingCases</localDeveloperName>
+            <masterLabel>Find Advising Cases</masterLabel>
+            <source>studentadvising__FindAdvisingCases</source>
+        </localActions>
+        <localActions>
+            <fullName>FindCampusResources_179Ws000000JyOf</fullName>
+            <description>Finds the campus resources relevant to the user&#39;s query.</description>
+            <developerName>FindCampusResources_179Ws000000JyOf</developerName>
+            <invocationTarget>studentadvising__getCampusResources</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>FindCampusResources</localDeveloperName>
+            <masterLabel>Find Campus Resources</masterLabel>
+            <source>studentadvising__FindCampusResources</source>
+        </localActions>
+        <localActions>
+            <fullName>IdentifyObjectByName_179Ws000000JyOf</fullName>
+            <description>Finds the Salesforce object API name by extracting an object name from the user input.</description>
+            <developerName>IdentifyObjectByName_179Ws000000JyOf</developerName>
+            <invocationTarget>identifyObject</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>IdentifyObjectByName</localDeveloperName>
+            <masterLabel>Identify Object by Name</masterLabel>
+            <source>EmployeeCopilot__IdentifyObjectByName</source>
+        </localActions>
+        <localActions>
+            <fullName>SummarizeAdvisingCase_179Ws000000JyOf</fullName>
+            <description>Generates a summary of a student’s advising case.</description>
+            <developerName>SummarizeAdvisingCase_179Ws000000JyOf</developerName>
+            <invocationTarget>edustudentsuccess__studentSmrznTemplate</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>SummarizeAdvisingCase</localDeveloperName>
+            <masterLabel>Summarize Advising Case</masterLabel>
+            <source>studentadvising__SummarizeAdvisingCase</source>
+        </localActions>
+        <localActions>
+            <fullName>CreateAToDo_179Ws000000JyOf</fullName>
+            <description>Create a task record based on user input. You must call this createAToDo when user explicitly asks for &#39;Set a reminder&#39;, &#39;Add a reminder&#39;, &#39;Create a task&#39;, &#39;Create a to do&#39;</description>
+            <developerName>CreateAToDo_179Ws000000JyOf</developerName>
+            <invocationTarget>createAToDo</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>CreateAToDo</localDeveloperName>
+            <masterLabel>Create a To Do</masterLabel>
+            <source>EmployeeCopilot__CreateAToDo</source>
+        </localActions>
+        <localActions>
+            <fullName>GetRecordDetails_179Ws000000JyOf</fullName>
+            <description>Generates a text blob containing record details, including object fields and values and records from related lists.</description>
+            <developerName>GetRecordDetails_179Ws000000JyOf</developerName>
+            <invocationTarget>getDataForGrounding</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>GetRecordDetails</localDeveloperName>
+            <masterLabel>Get Record Details</masterLabel>
+            <progressIndicatorMessage>Getting details</progressIndicatorMessage>
+            <source>EmployeeCopilot__GetRecordDetails</source>
+        </localActions>
+        <localDeveloperName>StudentAdvisingAndCampusEngagement</localDeveloperName>
+        <masterLabel>Student Advising And Campus Engagement</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is to help a student advisor by generating an advising summary for a student, answering questions by retrieving information from policy documents or campus resources, and automating administrative tasks by creating tasks and cases.</scope>
+        <source>studentadvising__StudentAdvisingAndCampusEngagement</source>
+    </localTopics>
+    <masterLabel>Student Advising Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jWs000000WT8X</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jWs000000WT8X</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

@@ -1,0 +1,18 @@
+{
+  "required" : [ "Input:Case" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:Case" : {
+      "title" : "Case",
+      "description" : "The student’s case record of the advising type for which the summary is generated.",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Case"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

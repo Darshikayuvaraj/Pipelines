@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveXmd xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dataset xsi:nil="true" />
+    <dimensions>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>A</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>lens_3.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>0</sortIndex>
+    </dimensions>
+    <dimensions>
+        <defaultAction>openSfdcRecord</defaultAction>
+        <field>Department_1.LearningCourse.Account.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>1</sortIndex>
+    </dimensions>
+    <dimensions>
+        <conditionalFormatting>
+            <property>chartColor</property>
+            <referenceField>LearningCourse.Account.Name</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>lens_2.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>2</sortIndex>
+    </dimensions>
+    <dimensions>
+        <defaultAction>openSfdcRecord</defaultAction>
+        <field>Table_2.LearningCourse.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>3</sortIndex>
+    </dimensions>
+    <measures>
+        <field>lens_1.F</field>
+        <formatCustomFormat>[&quot;#,###.#%&quot;,1]</formatCustomFormat>
+        <formatDecimalSeparator>.</formatDecimalSeparator>
+        <formatThousandsSeparator>,</formatThousandsSeparator>
+        <isDerived>false</isDerived>
+        <sortIndex>0</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.A</field>
+        <isDerived>false</isDerived>
+        <sortIndex>1</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.B</field>
+        <isDerived>false</isDerived>
+        <sortIndex>2</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.C</field>
+        <isDerived>false</isDerived>
+        <sortIndex>3</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.D</field>
+        <isDerived>false</isDerived>
+        <sortIndex>4</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.E</field>
+        <isDerived>false</isDerived>
+        <sortIndex>5</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>A</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>lens_3.A</field>
+        <isDerived>false</isDerived>
+        <label>Number of Sections</label>
+        <sortIndex>6</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <property>chartColor</property>
+            <referenceField>LearningCourse.Account.Name</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>lens_2.B</field>
+        <isDerived>false</isDerived>
+        <sortIndex>7</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.H</field>
+        <isDerived>false</isDerived>
+        <label>Withdrawals</label>
+        <sortIndex>8</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.G</field>
+        <isDerived>false</isDerived>
+        <label>Total Students in Waitlist for Course</label>
+        <sortIndex>9</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.E</field>
+        <isDerived>false</isDerived>
+        <sortIndex>10</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.D</field>
+        <isDerived>false</isDerived>
+        <label>Sections Offered</label>
+        <sortIndex>11</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.C</field>
+        <isDerived>false</isDerived>
+        <sortIndex>12</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.B</field>
+        <isDerived>false</isDerived>
+        <label>Capacity</label>
+        <sortIndex>13</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.F</field>
+        <formatCustomFormat>[&quot;#,###.#%&quot;,1]</formatCustomFormat>
+        <formatDecimalSeparator>.</formatDecimalSeparator>
+        <formatThousandsSeparator>,</formatThousandsSeparator>
+        <isDerived>false</isDerived>
+        <label>Utilisation Rate</label>
+        <sortIndex>14</sortIndex>
+    </measures>
+    <measures>
+        <field>Table_2.I</field>
+        <isDerived>false</isDerived>
+        <label>Current Enrollments</label>
+        <sortIndex>15</sortIndex>
+    </measures>
+    <type>Asset</type>
+    <waveVisualization>Learning_Section_Insights</waveVisualization>
+</WaveXmd>

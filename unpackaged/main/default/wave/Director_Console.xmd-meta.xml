@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveXmd xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dataset xsi:nil="true" />
+    <dimensions>
+        <conditionalFormatting>
+            <formattingBins>
+                <bin>Completion Due Date</bin>
+                <formatValue>rgb(227, 25, 59)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>0</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>On-Time Completion</bin>
+                <formatValue>rgb(38, 171, 164)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>1</sortIndex>
+            </formattingBins>
+            <property>chartColor</property>
+            <referenceField>Alert_Tracking</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>alert_distribution_b_1.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>0</sortIndex>
+    </dimensions>
+    <dimensions>
+        <conditionalFormatting>
+            <formattingBins>
+                <bin>Overdue</bin>
+                <formatValue>rgb(227, 25, 59)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>0</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>Completed On time</bin>
+                <formatValue>rgb(78, 212, 205)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>1</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>Completed after Due Date</bin>
+                <formatValue>rgb(38, 171, 164)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>2</sortIndex>
+            </formattingBins>
+            <property>chartColor</property>
+            <referenceField>CarePlan_Status_Tracking</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>lens_11.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>1</sortIndex>
+    </dimensions>
+    <measures>
+        <conditionalFormatting>
+            <formattingBins>
+                <bin>Completion Due Date</bin>
+                <formatValue>rgb(227, 25, 59)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>0</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>On-Time Completion</bin>
+                <formatValue>rgb(38, 171, 164)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>1</sortIndex>
+            </formattingBins>
+            <property>chartColor</property>
+            <referenceField>Alert_Tracking</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>alert_distribution_b_1.Total_Alert</field>
+        <isDerived>false</isDerived>
+        <sortIndex>0</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingBins>
+                <bin>Overdue</bin>
+                <formatValue>rgb(227, 25, 59)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>0</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>Completed On time</bin>
+                <formatValue>rgb(78, 212, 205)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>1</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>Completed after Due Date</bin>
+                <formatValue>rgb(38, 171, 164)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>2</sortIndex>
+            </formattingBins>
+            <property>chartColor</property>
+            <referenceField>CarePlan_Status_Tracking</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>lens_11.Total_Care_Plans</field>
+        <isDerived>false</isDerived>
+        <sortIndex>1</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingBins>
+                <bin>*</bin>
+                <formatValue>rgb(186, 5, 23)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>0</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>0</bin>
+                <formatValue>#091A3E</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>1</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>0.00001</bin>
+                <formatValue>rgb(46, 132, 74)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>2</sortIndex>
+            </formattingBins>
+            <property>color</property>
+            <referenceField>Count</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>multiple</type>
+        </conditionalFormatting>
+        <field>YOY_change_1.Count</field>
+        <isDerived>false</isDerived>
+        <sortIndex>2</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingBins>
+                <bin>*</bin>
+                <formatValue>rgb(186, 5, 23)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>0</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>0</bin>
+                <formatValue>#091A3E</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>1</sortIndex>
+            </formattingBins>
+            <formattingBins>
+                <bin>0.00001</bin>
+                <formatValue>rgb(46, 132, 74)</formatValue>
+                <label xsi:nil="true" />
+                <sortIndex>2</sortIndex>
+            </formattingBins>
+            <property>color</property>
+            <referenceField>Count</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>multiple</type>
+        </conditionalFormatting>
+        <field>lens_6.Count</field>
+        <isDerived>false</isDerived>
+        <sortIndex>3</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_6.Cancellation_Rate</field>
+        <formatCustomFormat>[&quot;#,###.##%&quot;,100]</formatCustomFormat>
+        <isDerived>false</isDerived>
+        <sortIndex>4</sortIndex>
+    </measures>
+    <type>Asset</type>
+    <waveVisualization>Director_Console</waveVisualization>
+</WaveXmd>

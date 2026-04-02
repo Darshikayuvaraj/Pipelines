@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveXmd xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dataset xsi:nil="true" />
+    <dimensions>
+        <defaultAction>openSfdcRecord</defaultAction>
+        <field>College_or_Departmen_2.LearningCourse.Account.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>0</sortIndex>
+    </dimensions>
+    <dimensions>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Faculty with Waitlist</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>1</sortIndex>
+    </dimensions>
+    <dimensions>
+        <defaultAction>openSfdcRecord</defaultAction>
+        <field>College_or_Departmen_1.LearningCourse.Account.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>2</sortIndex>
+    </dimensions>
+    <dimensions>
+        <conditionalFormatting>
+            <property>chartColor</property>
+            <referenceField>LearningCourse.Account.Name</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>lens_2.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>3</sortIndex>
+    </dimensions>
+    <dimensions>
+        <defaultAction>openActionsMenu</defaultAction>
+        <field>Main_Table_1.LearningCourse.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>4</sortIndex>
+    </dimensions>
+    <dimensions>
+        <defaultAction>openActionsMenu</defaultAction>
+        <field>Main_Table_1.LearningCourse.Account.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>5</sortIndex>
+    </dimensions>
+    <dimensions>
+        <defaultAction>openActionsMenu</defaultAction>
+        <field>Main_Table_1.Contact.Name</field>
+        <isDerived>false</isDerived>
+        <sortIndex>6</sortIndex>
+    </dimensions>
+    <dimensions>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Students Failed</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Faculty_Chart_1.ALL</field>
+        <isDerived>false</isDerived>
+        <sortIndex>7</sortIndex>
+    </dimensions>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField># Failed Students</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.# Failed Students</field>
+        <isDerived>false</isDerived>
+        <sortIndex>0</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Withdrawals</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Withdrawals</field>
+        <isDerived>false</isDerived>
+        <sortIndex>1</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Waitlisted</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Waitlisted</field>
+        <isDerived>false</isDerived>
+        <sortIndex>2</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Sections</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Number of Sections</field>
+        <isDerived>false</isDerived>
+        <sortIndex>3</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField># Enrollments</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.# Enrollments</field>
+        <isDerived>false</isDerived>
+        <sortIndex>4</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.F</field>
+        <isDerived>false</isDerived>
+        <sortIndex>5</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.E</field>
+        <formatCustomFormat>[&quot;#,###&quot;,1]</formatCustomFormat>
+        <isDerived>false</isDerived>
+        <sortIndex>6</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.D</field>
+        <isDerived>false</isDerived>
+        <sortIndex>7</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.C</field>
+        <formatCustomFormat>[&quot;#,###&quot;,1]</formatCustomFormat>
+        <formatThousandsSeparator>,</formatThousandsSeparator>
+        <isDerived>false</isDerived>
+        <sortIndex>8</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.B</field>
+        <isDerived>false</isDerived>
+        <sortIndex>9</sortIndex>
+    </measures>
+    <measures>
+        <field>lens_1.A</field>
+        <isDerived>false</isDerived>
+        <sortIndex>10</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Enrollments</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Number of Enrollments</field>
+        <isDerived>false</isDerived>
+        <sortIndex>11</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Size of Waitlist</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Size of Waitlist</field>
+        <isDerived>false</isDerived>
+        <sortIndex>12</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Total Withdrawals</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Total Withdrawals</field>
+        <isDerived>false</isDerived>
+        <sortIndex>13</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Students Failed</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Number of Students Failed</field>
+        <isDerived>false</isDerived>
+        <sortIndex>14</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <property>chartColor</property>
+            <referenceField>LearningCourse.Account.Name</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>categories</type>
+        </conditionalFormatting>
+        <field>lens_2.B</field>
+        <isDerived>false</isDerived>
+        <sortIndex>15</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_KPIs_1.A</field>
+        <isDerived>false</isDerived>
+        <sortIndex>16</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_KPIs_1.G</field>
+        <isDerived>false</isDerived>
+        <sortIndex>17</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_Table_1.C</field>
+        <isDerived>false</isDerived>
+        <label>Faculty with Waitlist</label>
+        <sortIndex>18</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_Table_1.B</field>
+        <isDerived>false</isDerived>
+        <label>Total Withdrawals</label>
+        <sortIndex>19</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_Table_1.A</field>
+        <isDerived>false</isDerived>
+        <label>Number of Enrollments</label>
+        <sortIndex>20</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_Table_1.F</field>
+        <isDerived>false</isDerived>
+        <sortIndex>21</sortIndex>
+    </measures>
+    <measures>
+        <field>Main_Table_1.H</field>
+        <isDerived>false</isDerived>
+        <label>Number of Failed Students</label>
+        <sortIndex>22</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Faculty with Waitlist</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Main_KPIs_2.Faculty with Waitlist</field>
+        <isDerived>false</isDerived>
+        <sortIndex>23</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Enrollments</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Faculty_Chart_1.Number of Enrollments</field>
+        <isDerived>false</isDerived>
+        <sortIndex>24</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Sections</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Faculty_Chart_1.Number of Sections</field>
+        <isDerived>false</isDerived>
+        <sortIndex>25</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Faculty with Waitlist</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Faculty_Chart_1.Faculty with Waitlist</field>
+        <isDerived>false</isDerived>
+        <sortIndex>26</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Total Withdrawals</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Faculty_Chart_1.Total Withdrawals</field>
+        <isDerived>false</isDerived>
+        <sortIndex>27</sortIndex>
+    </measures>
+    <measures>
+        <conditionalFormatting>
+            <formattingPredicates>
+                <formatValue>rgb(1, 118, 211)</formatValue>
+                <operator xsi:nil="true" />
+                <sortIndex xsi:nil="true" />
+                <value xsi:nil="true" />
+            </formattingPredicates>
+            <property>chartColor</property>
+            <referenceField>Number of Students Failed</referenceField>
+            <sortIndex xsi:nil="true" />
+            <type>static</type>
+        </conditionalFormatting>
+        <field>Faculty_Chart_1.Number of Students Failed</field>
+        <isDerived>false</isDerived>
+        <sortIndex>28</sortIndex>
+    </measures>
+    <type>Asset</type>
+    <waveVisualization>Learning_FacultyCmp</waveVisualization>
+</WaveXmd>

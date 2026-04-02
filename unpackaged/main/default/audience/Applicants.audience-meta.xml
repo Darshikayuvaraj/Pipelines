@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>Applicants</audienceName>
+    <container>TrialOrgPortal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <isEnabled>true</isEnabled>
+                <permissionName>ApplicantCommunityPages</permissionName>
+                <permissionType>Standard</permissionType>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Permission</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>148647fa-f67d-480e-aaed-ebeed61bf1e2$#$98a75588-9a2a-4d78-a309-2bf36b42a70e</groupName>
+            <priority>3</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Default_Theme_Navigation_Menu_Component_Properties</targetValue>
+        </target>
+        <target>
+            <groupName>8ab3a66f-76d3-4414-84f0-3072683bcf3a</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Home_ApplicantHome_Page</targetValue>
+        </target>
+    </targets>
+</Audience>
